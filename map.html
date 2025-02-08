@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+]<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -259,7 +259,7 @@
     <p>Locate nearby help centers quickly.</p>
     <button onclick="locateUser()">Use My Location</button>
     <br><br>
-    <!-- Manual location search feature restricted to India -->
+    <!-- Manual location search feature for India -->
     <p>Or enter your location manually:</p>
     <div style="margin-bottom: 10px;">
       <label for="manual-country">Country:</label>
@@ -309,9 +309,7 @@
     </div>
     <div style="margin-bottom: 10px;">
       <label for="manual-city">City:</label>
-      <select id="manual-city">
-        <option value="">Select city</option>
-      </select>
+      <input type="text" id="manual-city" placeholder="Enter city">
     </div>
     <button onclick="searchLocation()">Search</button>
     <p id="manual-loading-text" class="loading" style="display:none;">Fetching location...</p>
@@ -337,62 +335,6 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script>
     let userLat, userLon, map, resourceMarkers;
-
-    // Sample mapping of states to major cities in India
-    const indianCities = {
-      "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Tirupati"],
-      "Arunachal Pradesh": ["Itanagar"],
-      "Assam": ["Guwahati", "Dibrugarh"],
-      "Bihar": ["Patna", "Gaya", "Bhagalpur"],
-      "Chhattisgarh": ["Raipur", "Bilaspur"],
-      "Goa": ["Panaji", "Margao"],
-      "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
-      "Haryana": ["Gurgaon", "Faridabad", "Ambala"],
-      "Himachal Pradesh": ["Shimla", "Manali"],
-      "Jharkhand": ["Ranchi", "Jamshedpur"],
-      "Karnataka": ["Bengaluru", "Mysuru", "Mangalore", "Hubballi"],
-      "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode"],
-      "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior"],
-      "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"],
-      "Manipur": ["Imphal"],
-      "Meghalaya": ["Shillong"],
-      "Mizoram": ["Aizawl"],
-      "Nagaland": ["Kohima"],
-      "Odisha": ["Bhubaneswar", "Cuttack", "Rourkela"],
-      "Punjab": ["Ludhiana", "Amritsar", "Jalandhar"],
-      "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Ajmer"],
-      "Sikkim": ["Gangtok"],
-      "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli"],
-      "Telangana": ["Hyderabad", "Warangal"],
-      "Tripura": ["Agartala"],
-      "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra"],
-      "Uttarakhand": ["Dehradun", "Haridwar"],
-      "West Bengal": ["Kolkata", "Asansol", "Durgapur"],
-      "Delhi": ["New Delhi"],
-      "Chandigarh": ["Chandigarh"],
-      "Puducherry": ["Puducherry"],
-      "Andaman and Nicobar Islands": ["Port Blair"],
-      "Lakshadweep": ["Kavaratti"],
-      "Dadra and Nagar Haveli and Daman and Diu": ["Silvassa", "Daman", "Diu"]
-    };
-
-    // When the state selection changes, update the city dropdown
-    document.getElementById("manual-state").addEventListener("change", function() {
-      const state = this.value;
-      const citySelect = document.getElementById("manual-city");
-      citySelect.innerHTML = "";
-      if (indianCities[state]) {
-        citySelect.innerHTML = `<option value="">Select city</option>`;
-        indianCities[state].forEach(city => {
-          const option = document.createElement("option");
-          option.value = city;
-          option.text = city;
-          citySelect.appendChild(option);
-        });
-      } else {
-        citySelect.innerHTML = `<option value="">No cities available</option>`;
-      }
-    });
 
     function initializeMap(lat, lon) {
       if (!map) {
@@ -599,14 +541,14 @@
         });
     }
 
-    // Manual location search using Country (fixed to India), State (dropdown), and City (dropdown)
+    // Manual location search using Country (fixed to India), State (dropdown), and City (manual)
     function searchLocation() {
       const manualLoadingText = document.getElementById("manual-loading-text");
       manualLoadingText.style.display = "block";
       
       const country = document.getElementById("manual-country").value.trim();
-      const state = document.getElementById("manual-state").value;
-      const city = document.getElementById("manual-city").value;
+      const state = document.getElementById("manual-state").value.trim();
+      const city = document.getElementById("manual-city").value.trim();
       
       if (!country || !state || !city) {
         alert("Please fill in Country, State, and City.");
@@ -651,4 +593,3 @@
   </script>
 </body>
 </html>
-
