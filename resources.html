@@ -207,7 +207,11 @@
     }
     
     function loadCSVData() {
-      Papa.parse('https://raw.githubusercontent.com/SatvikMiglani/Disaster-Management-Hub/refs/heads/main/webresourcessss.csv', {
+      // Use AllOrigins to bypass CORS issues
+      const targetURL = 'https://raw.githubusercontent.com/SatvikMiglani/Disaster-Management-Hub/main/webresourcessss.csv';
+      const proxyURL = 'https://api.allorigins.hexocode.repl.co/get?disableCache=true&url=' + encodeURIComponent(targetURL);
+      
+      Papa.parse(proxyURL, {
         download: true,
         header: true,
         skipEmptyLines: true,
@@ -358,3 +362,4 @@
   </footer>
 </body>
 </html>
+
