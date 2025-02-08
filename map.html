@@ -4,12 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Help & Mitigation Center</title>
-  <!-- Google Fonts for modern typography -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Leaflet.js CDN -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <style>
-    /* Global Styles */
     * { box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
@@ -18,7 +15,6 @@
       margin: 0;
       padding: 0;
     }
-    /* Header */
     header {
       background-color: #004080;
       color: #fff;
@@ -55,14 +51,13 @@
       font-size: 14px;
       margin-right: 5px;
     }
-    /* Sidebar (Popup Dashboard) */
     .sidebar {
       height: 100%;
       width: 250px;
       position: fixed;
       z-index: 2000;
       top: 0;
-      right: -250px; /* Hidden by default */
+      right: -250px; 
       background-color: #004080;
       overflow-x: hidden;
       transition: right 0.5s;
@@ -84,7 +79,6 @@
       font-size: 36px;
       cursor: pointer;
     }
-    /* Open Sidebar Button (Hamburger Icon Only) */
     #openSidebarBtn {
       position: fixed;
       top: 20px;
@@ -100,7 +94,6 @@
       transition: background-color 0.3s;
     }
     #openSidebarBtn:hover { background-color: #003366; }
-    /* Hero Section */
     .hero {
       position: relative;
       background: linear-gradient(rgba(255,255,255,0.85), rgba(240,240,255,0.85)),
@@ -133,7 +126,6 @@
       transition: background-color 0.3s ease;
     }
     .hero button:hover { background-color: #a30000; }
-    /* Loader & Spinner */
     .loading {
       font-size: 16px;
       color: #333;
@@ -153,7 +145,6 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    /* Map Styling */
     #map {
       width: 90%;
       height: 350px;
@@ -163,7 +154,6 @@
       background-color: #e6e6e6;
       box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
-    /* Section Headings */
     h2.section-title {
       font-size: 18px;
       margin: 20px auto 10px;
@@ -173,7 +163,6 @@
       width: 90%;
       color: #004080;
     }
-    /* Resource Containers */
     #closest-resource-wrapper,
     #resources-wrapper {
       display: flex;
@@ -210,14 +199,12 @@
       margin: 3px 0;
       font-size: 14px;
     }
-    /* No Resources Message */
     .no-resources {
       text-align: center;
       font-size: 16px;
       color: #a00;
       margin: 20px auto;
     }
-    /* Footer */
     footer {
       background-color: #004080;
       color: #fff;
@@ -232,7 +219,6 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    /* Responsive */
     @media (max-width: 768px) {
       #closest-resource-wrapper,
       #resources-wrapper {
@@ -260,20 +246,76 @@
     </select>
   </header>
 
-  <!-- Sidebar (Popup Dashboard) -->
   <div id="sidebar" class="sidebar">
     <span class="closebtn" onclick="closeSidebar()">&times;</span>
     <a href="homepage.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
-  <!-- Open Sidebar Button (Hamburger Icon Only) -->
   <button id="openSidebarBtn" onclick="openSidebar()">☰</button>
 
   <section class="hero">
     <h2>Real-time Assistance</h2>
     <p>Locate nearby help centers quickly.</p>
     <button onclick="locateUser()">Use My Location</button>
+    <br><br>
+    <!-- Manual location search feature restricted to India -->
+    <p>Or enter your location manually:</p>
+    <div style="margin-bottom: 10px;">
+      <label for="manual-country">Country:</label>
+      <select id="manual-country">
+        <option value="India" selected>India</option>
+      </select>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <label for="manual-state">State:</label>
+      <select id="manual-state">
+        <option value="">Select state</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+        <option value="Assam">Assam</option>
+        <option value="Bihar">Bihar</option>
+        <option value="Chhattisgarh">Chhattisgarh</option>
+        <option value="Goa">Goa</option>
+        <option value="Gujarat">Gujarat</option>
+        <option value="Haryana">Haryana</option>
+        <option value="Himachal Pradesh">Himachal Pradesh</option>
+        <option value="Jharkhand">Jharkhand</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Madhya Pradesh">Madhya Pradesh</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Manipur">Manipur</option>
+        <option value="Meghalaya">Meghalaya</option>
+        <option value="Mizoram">Mizoram</option>
+        <option value="Nagaland">Nagaland</option>
+        <option value="Odisha">Odisha</option>
+        <option value="Punjab">Punjab</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <option value="Sikkim">Sikkim</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="Telangana">Telangana</option>
+        <option value="Tripura">Tripura</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="Uttarakhand">Uttarakhand</option>
+        <option value="West Bengal">West Bengal</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Chandigarh">Chandigarh</option>
+        <option value="Puducherry">Puducherry</option>
+        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+        <option value="Lakshadweep">Lakshadweep</option>
+        <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+      </select>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <label for="manual-city">City:</label>
+      <select id="manual-city">
+        <option value="">Select city</option>
+      </select>
+    </div>
+    <button onclick="searchLocation()">Search</button>
+    <p id="manual-loading-text" class="loading" style="display:none;">Fetching location...</p>
+    <!-- End manual location search feature -->
     <p id="loading-text" class="loading" style="display:none;">Fetching your location...</p>
     <div id="spinner" class="spinner" style="display:none;"></div>
   </section>
@@ -281,14 +323,10 @@
   <div id="map"></div>
 
   <h2 class="section-title">Closest Resources By Type</h2>
-  <section id="closest-resource-wrapper">
-    <!-- Closest resource items will be inserted here -->
-  </section>
+  <section id="closest-resource-wrapper"></section>
 
   <h2 class="section-title">All Nearby Resources</h2>
-  <section id="resources-wrapper">
-    <!-- Resource columns inserted here -->
-  </section>
+  <section id="resources-wrapper"></section>
 
   <p id="no-resources-text" class="no-resources" style="display:none;">No nearby resources found.</p>
 
@@ -296,12 +334,66 @@
     <p>&copy; 2025 Help & Mitigation Center. All rights reserved.</p>
   </footer>
 
-  <!-- Leaflet JS for the live map -->
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script>
     let userLat, userLon, map, resourceMarkers;
 
-    // Initialize the Leaflet map and marker group
+    // Sample mapping of states to major cities in India
+    const indianCities = {
+      "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Tirupati"],
+      "Arunachal Pradesh": ["Itanagar"],
+      "Assam": ["Guwahati", "Dibrugarh"],
+      "Bihar": ["Patna", "Gaya", "Bhagalpur"],
+      "Chhattisgarh": ["Raipur", "Bilaspur"],
+      "Goa": ["Panaji", "Margao"],
+      "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
+      "Haryana": ["Gurgaon", "Faridabad", "Ambala"],
+      "Himachal Pradesh": ["Shimla", "Manali"],
+      "Jharkhand": ["Ranchi", "Jamshedpur"],
+      "Karnataka": ["Bengaluru", "Mysuru", "Mangalore", "Hubballi"],
+      "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode"],
+      "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior"],
+      "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"],
+      "Manipur": ["Imphal"],
+      "Meghalaya": ["Shillong"],
+      "Mizoram": ["Aizawl"],
+      "Nagaland": ["Kohima"],
+      "Odisha": ["Bhubaneswar", "Cuttack", "Rourkela"],
+      "Punjab": ["Ludhiana", "Amritsar", "Jalandhar"],
+      "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Ajmer"],
+      "Sikkim": ["Gangtok"],
+      "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli"],
+      "Telangana": ["Hyderabad", "Warangal"],
+      "Tripura": ["Agartala"],
+      "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra"],
+      "Uttarakhand": ["Dehradun", "Haridwar"],
+      "West Bengal": ["Kolkata", "Asansol", "Durgapur"],
+      "Delhi": ["New Delhi"],
+      "Chandigarh": ["Chandigarh"],
+      "Puducherry": ["Puducherry"],
+      "Andaman and Nicobar Islands": ["Port Blair"],
+      "Lakshadweep": ["Kavaratti"],
+      "Dadra and Nagar Haveli and Daman and Diu": ["Silvassa", "Daman", "Diu"]
+    };
+
+    // When the state selection changes, update the city dropdown
+    document.getElementById("manual-state").addEventListener("change", function() {
+      const state = this.value;
+      const citySelect = document.getElementById("manual-city");
+      citySelect.innerHTML = "";
+      if (indianCities[state]) {
+        citySelect.innerHTML = `<option value="">Select city</option>`;
+        indianCities[state].forEach(city => {
+          const option = document.createElement("option");
+          option.value = city;
+          option.text = city;
+          citySelect.appendChild(option);
+        });
+      } else {
+        citySelect.innerHTML = `<option value="">No cities available</option>`;
+      }
+    });
+
     function initializeMap(lat, lon) {
       if (!map) {
         map = L.map('map').setView([lat, lon], 13);
@@ -318,7 +410,6 @@
         .openPopup();
     }
 
-    // Haversine formula to calculate distance between two points (km)
     function haversine(lat1, lon1, lat2, lon2) {
       const R = 6371;
       const dLat = ((lat2 - lat1) * Math.PI) / 180;
@@ -507,6 +598,57 @@
           alert("Error fetching data. Please try again later.");
         });
     }
+
+    // Manual location search using Country (fixed to India), State (dropdown), and City (dropdown)
+    function searchLocation() {
+      const manualLoadingText = document.getElementById("manual-loading-text");
+      manualLoadingText.style.display = "block";
+      
+      const country = document.getElementById("manual-country").value.trim();
+      const state = document.getElementById("manual-state").value;
+      const city = document.getElementById("manual-city").value;
+      
+      if (!country || !state || !city) {
+        alert("Please fill in Country, State, and City.");
+        manualLoadingText.style.display = "none";
+        return;
+      }
+      
+      const locationQuery = `${city}, ${state}, ${country}`;
+      const geocodeURL = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationQuery)}`;
+      
+      fetch(geocodeURL)
+        .then(response => response.json())
+        .then(data => {
+          manualLoadingText.style.display = "none";
+          if (data.length === 0) {
+            alert("Location not found. Please try again.");
+            return;
+          }
+          
+          const { lat, lon } = data[0];
+          userLat = parseFloat(lat);
+          userLon = parseFloat(lon);
+          
+          initializeMap(userLat, userLon);
+          fetchNearbyResources(userLat, userLon);
+        })
+        .catch(error => {
+          manualLoadingText.style.display = "none";
+          console.error("Error fetching location:", error);
+          alert("Error fetching location. Please try again.");
+        });
+    }
+
+    // Sidebar functions
+    function openSidebar() {
+      document.getElementById("sidebar").style.right = "0";
+    }
+
+    function closeSidebar() {
+      document.getElementById("sidebar").style.right = "-250px";
+    }
   </script>
 </body>
 </html>
+
