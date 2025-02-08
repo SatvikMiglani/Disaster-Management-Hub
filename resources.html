@@ -14,28 +14,28 @@
       box-sizing: border-box;
     }
     body {
+      margin: 0;
+      padding: 0;
       font-family: 'Montserrat', sans-serif;
       background-color: #f2f2f2;
       color: #333;
-      margin: 0;
-      padding: 0;
-      text-align: center;
     }
-    /* Header */
+    /* Blue Header (Full Width) */
     header {
+      width: 120%;
       background-color: #004080;
       color: #fff;
       padding: 15px;
-      text-align: center;
       position: sticky;
       top: 0;
       z-index: 1000;
+      text-align: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.15);
       animation: fadeIn 1s ease-in-out;
     }
     header h1 {
-      font-size: 28px;
       margin: 5px 0;
+      font-size: 28px;
     }
     header button,
     header select {
@@ -57,9 +57,9 @@
       font-size: 14px;
       margin-right: 5px;
     }
-    /* Container */
+    /* Container for Dashboard Content */
     .container {
-      width: 100%;
+      width: 120%;
       max-width: 1200px;
       margin: 20px auto;
       background: #fff;
@@ -118,7 +118,7 @@
       border-radius: 4px;
       padding: 4px;
     }
-    /* Select & Button */
+    /* Buttons and Selects inside Container */
     select {
       padding: 8px;
       border-radius: 4px;
@@ -171,7 +171,8 @@
       animation: fadeIn 1s ease-in-out;
     }
     @keyframes fadeIn {
-      from { opacity: 0; } to { opacity: 1; }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     @media (max-width: 768px) {
       th, td {
@@ -207,11 +208,8 @@
     }
     
     function loadCSVData() {
-      // Use AllOrigins to bypass CORS issues
-      const targetURL = 'https://raw.githubusercontent.com/pratham-thakuran/resources/refs/heads/main/webresourcessss.csv';
-      const proxyURL = 'https://api.allorigins.hexocode.repl.co/get?disableCache=true&url=' + encodeURIComponent(targetURL);
-      
-      Papa.parse(proxyURL, {
+      // Adjust the path or URL to your CSV file as needed.
+      Papa.parse('webresourcessss.csv', {
         download: true,
         header: true,
         skipEmptyLines: true,
@@ -324,7 +322,7 @@
   <header>
     <h1>Resource Availability</h1>
     <button onclick="getUserLocation()">Find Help Nearby</button>
-    <br><br>
+    <br /><br />
     <label for="radiusFilter">Filter by Distance:</label>
     <select id="radiusFilter" onchange="loadCSVData()">
       <option value="5">5 km</option>
@@ -332,7 +330,7 @@
       <option value="20">20 km</option>
       <option value="50">50 km</option>
     </select>
-    <br><br>
+    <br /><br />
     <label for="filterType">Filter by Type:</label>
     <select id="filterType" onchange="filterTable()">
       <option value="all">All</option>
