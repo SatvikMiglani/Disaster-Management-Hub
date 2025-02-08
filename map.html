@@ -1,4 +1,4 @@
-]<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -30,6 +30,33 @@
     header h1 {
       font-size: 24px;
       margin: 5px;
+    }
+    /* New Navigation Dashboard (matches index.html) */
+    header nav {
+      margin: 10px 0;
+    }
+    header nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    header nav ul li {
+      margin: 0 10px;
+    }
+    header nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    header nav ul li a:hover,
+    header nav ul li a.active {
+      background-color: #003366;
     }
     header button,
     header select {
@@ -235,6 +262,17 @@
 <body>
   <header>
     <h1>Help & Mitigation Center</h1>
+    <!-- Added Navigation Dashboard -->
+    <nav>
+      <ul>
+        <li><a href="homepage.html">Home</a></li>
+        <li><a href="map.html">Map</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="chatbot.html">Chatbot</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
     <button onclick="locateUser()">Find Help Now</button>
     <br><br>
     <label for="radius">Select Search Radius (km):</label>
@@ -333,6 +371,25 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <!-- Dynamic Navigation Active Link Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Get the current page file name (e.g., "map.html")
+      var currentPage = window.location.pathname.split("/").pop();
+      // Loop over each navigation link
+      var navLinks = document.querySelectorAll("header nav ul li a");
+      navLinks.forEach(function(link) {
+        // Remove any hardcoded "active" class
+        link.classList.remove("active");
+        // Get the href attribute of the link
+        var linkPage = link.getAttribute("href");
+        // If the current page matches the link's href, add "active" class
+        if ((currentPage === "" && linkPage === "homepage.html") || (linkPage === currentPage)) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
   <script>
     let userLat, userLon, map, resourceMarkers;
 
