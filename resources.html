@@ -208,7 +208,7 @@
     
     function loadCSVData() {
       // Use AllOrigins to bypass CORS issues
-      const targetURL = 'https://raw.githubusercontent.com/SatvikMiglani/Disaster-Management-Hub/main/webresourcessss.csv';
+      const targetURL = '';
       const proxyURL = 'https://api.allorigins.hexocode.repl.co/get?disableCache=true&url=' + encodeURIComponent(targetURL);
       
       Papa.parse(proxyURL, {
@@ -260,6 +260,7 @@
         let id = resource.ID || '';
         let name = resource.Name || '';
         let type = resource.Type || '';
+        let address = resource.Address || '';
         let available = Number(resource.Available_Resource) || 0;
         let total = Number(resource.Total_Capacity) || 0;
         let contact = resource.Contact || 'N/A';
@@ -271,6 +272,7 @@
           <td>${id}</td>
           <td>${name}</td>
           <td>${type}</td>
+          <td>${address}</td>
           <td>${available}</td>
           <td>${total}</td>
           <td>${percentage}</td>
@@ -345,9 +347,10 @@
           <th onclick="sortTable(0)">ID</th>
           <th onclick="sortTable(1)">Name</th>
           <th onclick="sortTable(2)">Type</th>
-          <th onclick="sortTable(3)">Available</th>
-          <th onclick="sortTable(4)">Total Capacity</th>
-          <th onclick="sortTable(5)">Availability (%)</th>
+          <th onclick="sortTable(3)">Address</th>
+          <th onclick="sortTable(4)">Available</th>
+          <th onclick="sortTable(5)">Total Capacity</th>
+          <th onclick="sortTable(6)">Availability (%)</th>
           <th>Status</th>
           <th>Contact</th>
           <th>Additional Info</th>
