@@ -59,7 +59,7 @@
     }
     /* Container */
     .container {
-      width: 90%;
+      width: 100%;
       max-width: 1200px;
       margin: 20px auto;
       background: #fff;
@@ -207,7 +207,7 @@
     }
     
     function loadCSVData() {
-      Papa.parse('https://github.com/SatvikMiglani/Disaster-Management-Hub/blob/main/webresourcessss.csv', {
+      Papa.parse('https://raw.githubusercontent.com/SatvikMiglani/Disaster-Management-Hub/main/webresourcessss.csv', {
         download: true,
         header: true,
         skipEmptyLines: true,
@@ -262,7 +262,7 @@
         let percentage = total > 0 ? ((available / total) * 100).toFixed(1) : 'N/A';
         let statusClass = percentage > 60 ? 'status-high' : percentage >= 30 ? 'status-low' : 'status-critical';
         let statusText = percentage > 60 ? 'High' : percentage >= 30 ? 'Medium' : 'Low';
-        let additionalinfo = resource.AdditionalInfo
+        let additionalinfo = resource.AdditionalInfo || '';
         let row = `<tr>
           <td>${id}</td>
           <td>${name}</td>
@@ -272,7 +272,7 @@
           <td>${percentage}</td>
           <td class="${statusClass}">${statusText}</td>
           <td>${contact}</td>
-          <td>${additionalinfo}<td
+          <td>${additionalinfo}</td>
         </tr>`;
         tbody.innerHTML += row;
       });
@@ -302,7 +302,9 @@
       let sortedRows = rows.sort((rowA, rowB) => {
         let cellA = rowA.cells[columnIndex].textContent.trim();
         let cellB = rowB.cells[columnIndex].textContent.trim();
-        return isNaN(cellA) || isNaN(cellB) ? cellA.localeCompare(cellB) : Number(cellA) - Number(cellB);
+        return isNaN(cellA) || isNaN(cellB)
+          ? cellA.localeCompare(cellB)
+          : Number(cellA) - Number(cellB);
       });
       let tbody = table.querySelector("tbody");
       tbody.innerHTML = '';
@@ -344,6 +346,7 @@
           <th onclick="sortTable(5)">Availability (%)</th>
           <th>Status</th>
           <th>Contact</th>
+          <th>Additional Info</th>
         </tr>
       </thead>
       <tbody></tbody>
